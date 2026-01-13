@@ -1,0 +1,87 @@
+{
+   "name": "vscode-dapper-sql-colorizer",
+   "displayName": "Dapper SQL Colorizer",
+   "description": "Inline SQL syntax highlighting in C# strings when preceded by // sql syntax.",
+   "version": "0.1.0",
+   "publisher": "DanielMarBonilla",
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/DStrik/vscode-dapper-sql-colorizer.git"
+   },
+   "license": "MIT",
+   "engines": {
+      "vscode": "^1.75.0"
+   },
+   "categories": [
+      "Programming Languages",
+      "Other"
+   ],
+   "activationEvents": [
+      "onStartupFinished"
+   ],
+   "main": "./out/extension.js",
+   "contributes": {
+      "grammars": [
+         {
+            "scopeName": "vscode-dapper-sql-colorizer.inline-sql",
+            "path": "./syntaxes/sql-inline.tmLanguage.json",
+            "injectTo": ["source.cs"]
+         }
+      ],
+      "configuration": {
+         "title": "Dapper SQL Colorizer",
+         "properties": {
+            "dapperSqlColorizer.colors.keywords": {
+               "type": "string",
+               "default": "#ef836eff",
+               "description": "Color for SQL keywords (SELECT, FROM, WHERE, etc.)"
+            },
+            "dapperSqlColorizer.colors.identifiers": {
+               "type": "string",
+               "default": "#FFFFFF",
+               "description": "Color for SQL identifiers (column names, table names, aliases)"
+            },
+            "dapperSqlColorizer.colors.parameters": {
+               "type": "string",
+               "default": "#9CDCFE",
+               "description": "Color for SQL parameters (@UserId, @Id, etc.)"
+            },
+            "dapperSqlColorizer.colors.functions": {
+               "type": "string",
+               "default": "#DCDCAA",
+               "description": "Color for SQL functions (COUNT, MAX, COALESCE, etc.)"
+            },
+            "dapperSqlColorizer.colors.strings": {
+               "type": "string",
+               "default": "#CE9178",
+               "description": "Color for SQL string literals ('text')"
+            },
+            "dapperSqlColorizer.colors.numbers": {
+               "type": "string",
+               "default": "#B5CEA8",
+               "description": "Color for SQL numeric literals"
+            },
+            "dapperSqlColorizer.colors.booleans": {
+               "type": "string",
+               "default": "#569CD6",
+               "description": "Color for SQL boolean literals (true, false)"
+            },
+            "dapperSqlColorizer.keywords.bold": {
+               "type": "boolean",
+               "default": true,
+               "description": "Make SQL keywords bold"
+            }
+         }
+      }
+   },
+   "scripts": {
+      "compile": "tsc -p .",
+      "watch": "tsc -w -p .",
+      "vscode:prepublish": "npm run compile"
+   },
+   "devDependencies": {
+      "@types/node": "^18.19.0",
+      "@types/vscode": "^1.75.0",
+      "typescript": "^5.4.0"
+   }
+}

@@ -1,0 +1,35 @@
+{
+   "name": "Inline SQL for C#",
+   "scopeName": "vscode-dapper-sql-colorizer.inline-sql",
+   "injectionSelector": "L:source.cs",
+   "patterns": [
+      {
+         "comment": "Region starts at the marker line and ends at the first closing quote after the following string.",
+         "begin": "^\\s*//\\s*sql(?:\\s*syntax)?\\s*$",
+         "end": "\"(?!\")",
+         "patterns": [
+            {
+               "name": "meta.embedded.inline.sql.normal",
+               "begin": "^\\s*(?:\\$@|@\\$|@|\\$)?\"",
+               "end": "(?<!\\)\"",
+               "contentName": "source.sql",
+               "patterns": [{ "include": "source.sql" }]
+            },
+            {
+               "name": "meta.embedded.inline.sql.verbatim",
+               "begin": "^\\s*@(?:\\$)?\"",
+               "end": "\"(?!\")",
+               "contentName": "source.sql",
+               "patterns": [{ "include": "source.sql" }]
+            },
+            {
+               "name": "meta.embedded.inline.sql.raw",
+               "begin": "^\\s*\"{3,}",
+               "end": "\"{3,}",
+               "contentName": "source.sql",
+               "patterns": [{ "include": "source.sql" }]
+            }
+         ]
+      }
+   ]
+}
